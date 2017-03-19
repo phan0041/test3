@@ -13,33 +13,17 @@ MANAGERS = ADMINS
 DAJAXICE_MEDIA_PREFIX="dajaxice"
 
 #online database
-if 'VCAP_SERVICES' in os.environ:
-	import json
-	vcap_services = json.loads(os.environ['VCAP_SERVICES'])
-	mysql_srv = vcap_services['mysql-5.1'][0]
-	cred = mysql_srv['credentials']
-	
-	DATABASES = {
-		'default': {
-			'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-			'NAME': cred['name'],                      # Or path to database file if using sqlite3.
-			'USER': cred['user'],                      # Not used with sqlite3.
-			'PASSWORD': cred['password'],                  # Not used with sqlite3.
-			'HOST': cred['hostname'],                      # Set to empty string for localhost. Not used with sqlite3.
-			'PORT': cred['port'],                      # Set to empty string for default. Not used with sqlite3.
-		}
-	}
-else:
-	DATABASES = {
-		'default': {
-			'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-			'NAME': 'dac23e7d984db49e79b06d943cebd093c',                      # Or path to database file if using sqlite3.
-			'USER': 'vandan193@gmail.com',                      # Not used with sqlite3.
-			'PASSWORD': 'phanvandan',                  # Not used with sqlite3.
-			'HOST': '10.0.28.130',                      # Set to empty string for localhost. Not used with sqlite3.
-			'PORT': '', 
-		}
-	}
+DATABASES = {
+    # staging database
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'd23ogluv8012a5',                      # Or path to database file if using sqlite3.
+        'USER': 'slzecnmkgrzllu',                      # Not used with sqlite3.
+        'PASSWORD': 'c83e5534a7e21a98d0545db63a58190f6c96fcf3779f8f72dd0640959246e6ff',                  # Not used with sqlite3.
+        'HOST': 'c2-54-225-67-3.compute-1.amazonaws.com',                      # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '5432',                      # Set to empty string for default. Not used with sqlite3.
+    }
+    }
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
